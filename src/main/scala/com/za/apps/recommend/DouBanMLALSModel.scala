@@ -1,9 +1,7 @@
 package com.za.apps.recommend
 
-import com.za.apps.recommend.DouBanALSModel.dataPath
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.recommendation.ALS
-import org.apache.spark.mllib.evaluation.RegressionMetrics
 import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema
 import org.apache.spark.sql.{Row, SQLContext}
 import org.apache.spark.{SparkConf, SparkContext}
