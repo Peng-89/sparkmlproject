@@ -69,6 +69,13 @@
             <version>${spark.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-graphx -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-graphx_2.11</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.hankcs</groupId>
             <artifactId>hanlp</artifactId>
