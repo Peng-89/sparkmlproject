@@ -56,5 +56,36 @@ object MergeTime {
         }
         (a._1,dataList)
       }).foreach(println)
+
+    data.map(a => (a.userid + "_" + a.locationid, a))
+            .combineByKey(
+              (v:mtime)=>List(v),
+              (c:List[mtime],v:mtime)=>v::c,
+              (c1:List[mtime],c2:List[mtime]) => c1:::c2
+            ) .map(a => {
+      val values = a._2.sortBy(_.begintime)
+      val length = values.length
+      var index = 0
+      val dataList = new ListBuffer[mtime]
+      var first =values(index)
+      var tmp = first
+      while(index<length){
+        if(index == length-1){
+          first = values(index )
+          tmp = values(index )
+          dataList +=tmp
+        }else {
+          if (tmp.endtime.equals(values(index + 1).begintime)) {
+            tmp = mtime(first.userid, first.locationid, first.begintime, first.split + values(index + 1).split, values(index + 1).endtime)
+          } else {
+            dataList +=tmp
+            first = values(index + 1)
+            tmp = values(index + 1)
+          }
+        }
+        index=index+1
+      }
+      (a._1,dataList)
+    }).foreach(println)
   }
 }
